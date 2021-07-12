@@ -1,0 +1,17 @@
+.row{
+
+    padding: 1rem;
+
+    &__posters {
+        padding: 1rem 0;
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100vw;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+}
