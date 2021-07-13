@@ -8,10 +8,12 @@
         overflow-x: auto;
         overflow-y: hidden;
         max-width: 100vw;
-        
-        &::-webkit-scrollbar {
+        scrollbar-color: purple;
+
+        &::-webkit-scrollbar{
             display: none;
         }
+
     }
 
 }

@@ -8,10 +8,12 @@ interface Movies {
   overview: string;
   backdrop_path: string;
   first_air_date: string;
+  original_name: string;
   genre_ids: number[];
   poster_path: string;
   id: string;
 }
+
 interface MovieData {
   data: {
     page: number;
@@ -29,19 +31,22 @@ interface Props {
     fetchHorrorMovies: Movies[]
     fetchRomanceMovies: Movies[]
     fetchDocumentaries: Movies[]
-  }
+  };
+  banner: Movies
 }
 
 import requests from '../lib/request_urls'
 
 import Row from '../layout/movie_row/Row'
 import Banner from '../components/banner/Banner'
+import Nav from '../components/nav/Nav'
 
 
-export default function Home({allMovies}:Props) {
+export default function Home({allMovies, banner}:Props) {
   return (
     <Fragment>
-      <Banner movies={allMovies.fetchNetflixOriginals}/>
+      <Nav/>
+      <Banner movie={banner}/>
       <Row title='NETFLIX ORIGINALS' isLargeRow={true} movies={allMovies.fetchNetflixOriginals} />
       <Row title='TRENDING NOW' isLargeRow={false} movies={allMovies.fetchTrending} />
       <Row title='ACTION MOVIES' isLargeRow={false} movies={allMovies.fetchActionMovies} />
@@ -55,17 +60,19 @@ export default function Home({allMovies}:Props) {
 
 export async function getServerSideProps() {
 
-  const allMovies = {}
+  const allMovies:any = {}
 
   for (const keys in requests) {
-
     const { data }: MovieData = await axios.get(requests[keys])
     allMovies[keys] = data.results
   }
 
+  const banner = allMovies.fetchTrending[Math.floor(Math.random() * (allMovies.fetchTrending.length - 1))]
+  
   return {
     props: {
-      allMovies
+      allMovies,
+      banner
     }
   }
 }

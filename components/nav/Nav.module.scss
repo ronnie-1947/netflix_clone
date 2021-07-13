@@ -1,0 +1,33 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 10;
+    transition: all .3s ease-in;
+    
+    &__sticky {
+        background-color: #111;
+    }
+
+    &__logo{
+        
+        img{
+            height: 2rem;
+            object-fit: contain;
+        }
+    }
+    
+    &__usr{
+        display: flex;
+        justify-content: flex-end;
+        img{
+            height: 3rem;
+            object-fit: contain;
+        }
+    }
+
+}

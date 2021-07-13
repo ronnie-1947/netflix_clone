@@ -5,11 +5,12 @@ interface props {
     name: string;
     poster_path: string;
     isLargeRow: boolean;
+    clickHandler: (name: string)=>void;
 }
 
-const MoviePoster = ({name, isLargeRow, poster_path}:props) => {
+const MoviePoster = ({name, isLargeRow, poster_path, clickHandler}:props) => {
     return (
-        <div className={styles.poster}>
+        <div onClick={()=>clickHandler(name)} className={styles.poster}>
             <span>
                 <Image src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt={name} height={isLargeRow?280:110} width={isLargeRow?180:190}  layout="intrinsic"/>
             </span>
