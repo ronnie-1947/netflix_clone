@@ -39,7 +39,7 @@ const Banner = ({ movie }: Props) => {
 
         const trailer:(string|null) = await movieTrailer(movieName)
        
-        if(!trailer)return
+        if(!trailer)setTrailerUrl('')
 
         const urlParams = new URLSearchParams(new URL(trailer).search)
         setTrailerUrl(urlParams.get('v'))
@@ -56,10 +56,12 @@ const Banner = ({ movie }: Props) => {
     return (
         <React.Fragment>
             <Backdrop closeHandler = {closeBackdrop} active={backdrop}>
-                <Youtube
-                    videoId={trailerUrl}
-                    opts={opts}
-                />
+                <span className={styles.player}>
+                    <Youtube
+                        videoId={trailerUrl}
+                        opts={opts}
+                    />
+                </span>
             </Backdrop>
             <header style={{
 

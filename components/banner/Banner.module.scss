@@ -43,3 +43,15 @@
         background: linear-gradient(180deg, transparent, rgba(37, 37, 37, .61), #111);
     }
 }
+
+
+.player{
+
+    display: flex;
+    justify-content: center;
+    
+    iframe {
+        max-width: 95vw;
+        object-fit: contain;
+    }
+}
